@@ -47,6 +47,10 @@ public class Network {
     *  Otherwise, creates a new user with the given name, adds the user to this network, and returns true. */
     public boolean addUser(String name) {
         
+        if (name == null){
+            return false;
+        }
+        
         if (userCount == users.length || getUser(name) != null){
             return false;
         }
@@ -62,11 +66,15 @@ public class Network {
      *  or if the "follows" addition failed for some reason, returns false. */
     public boolean addFollowee(String name1, String name2) {
         
+        if (name1 == null || name2 == null){
+            return false;
+        }
+
         if (getUser(name1) == null || getUser(name2) == null){
             return false;
         }
 
-        if (name1 == name2){
+        if (name1.equals(name2)){
             return false;
         }
         
@@ -151,10 +159,10 @@ public class Network {
 
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
-        String str = "Network:" + "\n";
+        String str = "Network:";
 
         for (int i = 0; i < userCount; i++){
-         str += users[i].toString() + "\n";
+         str += "\n" + users[i].toString();
         }
  
         return str;
