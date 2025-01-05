@@ -22,11 +22,14 @@ public class Network {
         userCount = 3;
     }
 
+    public int getUserCount() {
+        return this.userCount;
+    }
     /** Finds in this network, and returns, the user that has the given name.
      *  If there is no such user, returns null.
      *  Notice that the method receives a String, and returns a User object. */
     public User getUser(String name) {
-        
+       
         for (int i = 0; i < userCount; i++){
             if (users[i].getName().equals(name)){
                 return users[i];
@@ -99,7 +102,7 @@ public class Network {
     /** Computes and returns the name of the most popular user in this network: 
      *  The user who appears the most in the follow lists of all the users. */
     public String mostPopularUser() {
-        
+       
         if (userCount == 0){
             return null;
         }
@@ -142,12 +145,12 @@ public class Network {
 
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
-       String str = "";
+        String str = "";
 
-       for (int i = 0; i < userCount; i++){
-        str += users[i].toString() + "\n";
-       }
-
-       return str;
-    }
+        for (int i = 0; i < userCount; i++){
+         str += users[i].toString() + "\n";
+        }
+ 
+        return str;
+     }
 }
