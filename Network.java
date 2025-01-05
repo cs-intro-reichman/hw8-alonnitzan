@@ -30,8 +30,10 @@ public class Network {
      *  Notice that the method receives a String, and returns a User object. */
     public User getUser(String name) {
        
+        name = name.toLowerCase();
+        
         for (int i = 0; i < userCount; i++){
-            if (users[i].getName().equals(name)){
+            if (users[i].getName().toLowerCase().equals(name)){
                 return users[i];
             }
         }
@@ -63,6 +65,10 @@ public class Network {
         if (getUser(name1) == null || getUser(name2) == null){
             return false;
         }
+
+        if (name1 == name2){
+            return false;
+        }
         
         return getUser(name1).addFollowee(name2);
     }
@@ -85,7 +91,7 @@ public class Network {
             }
 
             int mutual = currentUser.countMutual(users[i]);
-            if (mutual >= maxMutualFollowees){
+            if (mutual > maxMutualFollowees){
                 mostRecommendedUserToFollow = users[i];
                 maxMutualFollowees = mutual;
             }
@@ -145,7 +151,7 @@ public class Network {
 
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
-        String str = "";
+        String str = "Network:" + "\n";
 
         for (int i = 0; i < userCount; i++){
          str += users[i].toString() + "\n";
